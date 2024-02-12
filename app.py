@@ -9,7 +9,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 @app.route('/')
 def home():
     # app.logger.info('This is an info message')
-    return render_template('index.php')
+    return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -51,7 +51,7 @@ def predict():
     elif(predicted_performance[0]==9):
         output='Excellent'
 
-    return render_template('index.php', prediction_text='Your performance is  {}'.format(output))
+    return render_template('index.html', prediction_text='Your performance is  {}'.format(output))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
