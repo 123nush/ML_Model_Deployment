@@ -1,15 +1,20 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+import logging
+from logging.handlers import RotatingFileHandler
 # import logging
 app = Flask(__name__)
+handler = RotatingFileHandler('flask.log', maxBytes=10000, backupCount=1)
+handler.setLevel(logging.INFO)
+app.logger.addHandler(handler)
 # logging.basicConfig(level=logging.DEBUG) 
 model = pickle.load(open('model.pkl', 'rb'))
 
-# @app.route('/')
-# def home():
-#     # app.logger.info('This is an info message')
-#     return render_template('index.html')
+@app.route('/')
+def home():
+    # app.logger.info('This is an info message')
+    return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
