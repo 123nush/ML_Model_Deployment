@@ -24,10 +24,10 @@
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="job_profile_name_analysis" placeholder="Select Job Profile" required="required" />
+    	<!-- <input type="text" name="job_profile_name_analysis" placeholder="Select Job Profile" required="required" />
         <input type="text" name="attained_questions_analysis" placeholder="Total Attained questions" required="required" />
 		<input type="text" name="score_analysis" placeholder="Quiz Score" required="required" />
-    <!-- <input type="text" name="correctness" placeholder="correctness" />         -->
+    <input type="text" name="correctness" placeholder="correctness" />         -->
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 
