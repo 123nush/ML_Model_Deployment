@@ -25,7 +25,7 @@ def predict():
             attained_questions_analysis=1
         score_analysis = float(request.form['score_analysis'])
         correctness = round((score_analysis * 100) / attained_questions_analysis, 2)
-        if(job_profile_name=='Cybersecurity Analyst'):
+        if(job_profile_name==' Cybersecurity Analyst'):
             job_profile_name_analysis=0
         elif(job_profile_name=='a'):
             job_profile_name_analysis=1
