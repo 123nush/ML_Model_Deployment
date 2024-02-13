@@ -6,10 +6,10 @@ app = Flask(__name__)
 # logging.basicConfig(level=logging.DEBUG) 
 model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/')
-def home():
-    # app.logger.info('This is an info message')
-    return render_template('index.html')
+# @app.route('/')
+# def home():
+#     # app.logger.info('This is an info message')
+#     return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
