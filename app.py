@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import logging
 from logging.handlers import RotatingFileHandler
+from sklearn.preprocessing import LabelEncoder
 # import logging
 app = Flask(__name__)
 handler = RotatingFileHandler('flask.log', maxBytes=10000, backupCount=1)
@@ -25,7 +26,7 @@ def predict():
             attained_questions_analysis = 1
         score_analysis = float(request.form['score_analysis'])
         correctness = round((score_analysis * 100) / attained_questions_analysis, 2)
-        
+        label_encoder = LabelEncoder()
         # Map job profile name to integer using label encoding
         job_profile_name_analysis = label_encoder.transform([job_profile_name])[0]
         
@@ -45,7 +46,7 @@ def predict():
         output += f'{job_profile_performance}, '
 
         # Parse category data and predict performance for each category
-        category_data = json.loads(request.form['categoryData'])
+        category_data = jsonify.loads(request.form['categoryData'])
         for category_info in category_data:
             category_name = category_info['category']
             y_count = category_info['Y']
@@ -56,7 +57,7 @@ def predict():
             category_correctness = round((y_count / total_count) * 100, 2)
             
             # Predict performance based on correctness
-            predicted_category_performance = model.predict([[total_count, y_count, category_correctness, job_profile_name_analysis]])[0]
+            predicted_category_performance = model.predict([[total_count, y_count, category_correctness, category_name]])[0]
             category_performance_label = performance_labels[predicted_category_performance]
             
             # Append category performance to the output string
