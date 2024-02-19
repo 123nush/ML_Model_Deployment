@@ -2,6 +2,7 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 import logging
+import json
 from logging.handlers import RotatingFileHandler
 from sklearn.preprocessing import LabelEncoder
 # import logging
@@ -46,7 +47,7 @@ def predict():
         output += f'{job_profile_performance}, '
 
         # Parse category data and predict performance for each category
-        category_data = jsonify.loads(request.form['category_performance_analysis'])
+        category_data = json.loads(request.form['category_performance_analysis'])
         for category_info in category_data:
             category_name = category_info['category']
             y_count = category_info['Y']
