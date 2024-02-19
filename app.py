@@ -19,7 +19,7 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    if all(key in request.form for key in ('job_profile_name_analysis', 'attained_questions_analysis', 'score_analysis', 'categoryData')):
+    if all(key in request.form for key in ('job_profile_name_analysis', 'attained_questions_analysis', 'score_analysis', 'category_performance_analysis')):
         job_profile_name = request.form['job_profile_name_analysis']
         attained_questions_analysis = float(request.form['attained_questions_analysis'])
         if attained_questions_analysis == 0:
@@ -46,7 +46,7 @@ def predict():
         output += f'{job_profile_performance}, '
 
         # Parse category data and predict performance for each category
-        category_data = jsonify.loads(request.form['categoryData'])
+        category_data = jsonify.loads(request.form['category_performance_analysis'])
         for category_info in category_data:
             category_name = category_info['category']
             y_count = category_info['Y']
