@@ -22,12 +22,15 @@ def home():
 def predict():
     # output string for all prediction to send
     if all(key in request.form for key in ('job_profile_name_analysis', 'attained_questions_analysis', 'score_analysis', 'category_performance_analysis')):
+
         job_profile_name = request.form['job_profile_name_analysis']
         job_list = [job_profile_name]
         attained_questions_analysis = float(request.form['attained_questions_analysis'])
-        if attained_questions_analysis == 0:
-            attained_questions_analysis = 1
+        # if attained_questions_analysis == 0:
+        #     attained_questions_analysis = 1
         score_analysis = float(request.form['score_analysis'])
+        print(attained_questions_analysis)
+        print(attained_questions_analysis)
         correctness = round((score_analysis * 100) / attained_questions_analysis, 2)
         label_encoder = LabelEncoder()
         print(attained_questions_analysis)
