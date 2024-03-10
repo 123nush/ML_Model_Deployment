@@ -30,6 +30,8 @@ def predict():
         score_analysis = float(request.form['score_analysis'])
         correctness = round((score_analysis * 100) / attained_questions_analysis, 2)
         label_encoder = LabelEncoder()
+        print(attained_questions_analysis)
+        print(score_analysis)
         
         # Fit the LabelEncoder to the training data for job profiles
         if not hasattr(label_encoder, 'classes_'):
